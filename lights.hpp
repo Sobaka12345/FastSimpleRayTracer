@@ -65,11 +65,6 @@ public:
     {
         return origin_;
     }
-
-   glm::vec3 CalcL(glm::vec3 point) const
-   {
-       return origin_ - point;
-   }
 };
 
 class DirectionalLight: public Light
@@ -84,11 +79,6 @@ public:
     const glm::vec3& GetDirection() const
     {
         return direction_;
-    }
-
-    glm::vec3 CalcL() const
-    {
-        return -direction_;
     }
 };
 

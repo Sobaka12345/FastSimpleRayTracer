@@ -64,9 +64,10 @@ Color Renderer::RayTrace(const glm::vec3& orig, const glm::vec3& dir, size_t dep
         return intencity;
     };
 
+
     for(const auto& point_src : light_.point_sources)
     {
-        glm::vec3 L = point_src.CalcL(P);
+        glm::vec3 L = point_src.GetOrigin() - P;
         if(auto [figure_ptr, dummy] =
                 GetRayIntersection(P, L,
                          point_src.GetMinDepth(),
@@ -80,7 +81,7 @@ Color Renderer::RayTrace(const glm::vec3& orig, const glm::vec3& dir, size_t dep
 
     for(const auto& directional_src : light_.directional_sources)
     {
-        glm::vec3 L = directional_src.CalcL();
+        glm::vec3 L = -directional_src.GetDirection();
         if(auto [figure_ptr, dummy] =
                 GetRayIntersection(P, L,
                          directional_src.GetMinDepth(),
