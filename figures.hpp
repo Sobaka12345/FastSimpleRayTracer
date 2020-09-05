@@ -136,11 +136,10 @@ public:
         d_ = d;
     }
 
-    glm::vec3 GetN(glm::vec3 vec) const override
+    glm::vec3 GetN(glm::vec3) const override
     {
         float sum = perpendicular_.x + perpendicular_.y + perpendicular_.z;
-        float mul = 1.0f / sum;
-        return -glm::vec3(perpendicular_.x, perpendicular_.y, perpendicular_.z) * mul;
+        return -glm::vec3(perpendicular_.x, perpendicular_.y, perpendicular_.z) * (1.0f / sum);
     }
 
     std::vector<float> GetIntersectionCoef(glm::vec3 orig, glm::vec3 dir) const override
